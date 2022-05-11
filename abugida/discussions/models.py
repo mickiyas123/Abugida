@@ -58,11 +58,10 @@ class Question(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     querier = models.ForeignKey(
         Profile,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True)
+        on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     body = models.TextField()
+    body_image = models.ImageField(null=True, blank=True, upload_to='questions/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -82,9 +81,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     responder = models.ForeignKey(
         Profile,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True)
+        on_delete=models.CASCADE)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
