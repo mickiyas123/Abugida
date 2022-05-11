@@ -1,0 +1,19 @@
+<a href="{% url 'update-room' room.id %}">Update Room</a>
+<a href="{% url 'delete-room' room.id %}">Delete Room</a>
+<a href="{% url 'create-question' %}">Create Question</a>
+<h1>{{room}}</h1>
+{% for question in questions %}
+<a href="{% url 'update-question' question.id %}">Update question</a>
+<a href="{% url 'delete-question' question.id %}">Delete question</a>
+<h3>{{question}}</h3>
+{% for answer in question.answer_set.all %}
+<ul>
+    <li><p>{{answer}} <a href="{% url 'update-answer' answer.id %}">Update Answer</a>
+        <a href="{% url 'delete-answer' answer.id %}">Delete Answer</a> 
+    </p>
+    </li>
+</ul>
+{% endfor %}
+<a href="{% url 'create-answer' %}">Create Answer</a>
+<hr>
+{% endfor %}
