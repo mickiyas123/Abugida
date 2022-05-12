@@ -25,7 +25,7 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
         />
-        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
     </head>
     <body>
         <!-- nav -->
@@ -57,7 +57,7 @@
 
                         <li class="item"><a href="{% url 'home' %}">HOME</a></li>
                         <li class="item"><a href="./about.html">ABOUT</a></li>
-                        <li class="item"><a href="#">DISCUSION</a></li>
+                        <li class="item"><a href="{% url 'discussions' %}">DISCUSION</a></li>
                         <li class="item"><a href="./couse.html">COURSE</a></li>
                         <li class="item"><a href="#">TEACHERS</a></li>
                         
