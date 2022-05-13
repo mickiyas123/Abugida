@@ -1,3 +1,5 @@
+{%  load static %}
+<link rel="stylesheet" href="{%  static 'styles/main.css' %}">
 <a href="{% url 'create-room' %}">Create Room</a>
 {%  for room in discussions %}
  <a href="{% url 'room' room.id %}"><h1>{{room.name}}</h1></a>
