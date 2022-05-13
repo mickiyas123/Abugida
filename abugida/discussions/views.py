@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Question, Room ,Topic, Answer
 from .forms import RoomForm ,QuestionForm ,AnswerForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -32,6 +33,8 @@ def room(request, pk):
     context = {'room': room, 'questions': questions, 'answers': answers}
     return render(request, 'discussions/room.html', context)
 
+
+@login_required(login_url='login')
 def createRoom(request):
     """ A method for creating new room """
     form = RoomForm()
@@ -45,6 +48,8 @@ def createRoom(request):
     context = {'form': form}
     return render(request, 'discussions/room_form.html', context)
 
+
+@login_required(login_url='login')
 def updateRoom(request, pk):
     """ A method for updating a room """
     room = Room.objects.get(id=pk)
@@ -61,6 +66,8 @@ def updateRoom(request, pk):
 
 
 
+
+@login_required(login_url='login')
 def createQuestion(request):
     """ A method for creating question """
     form = QuestionForm()
@@ -74,6 +81,8 @@ def createQuestion(request):
     context = {'form': form}
     return render(request, 'discussions/question_form.html', context)
 
+
+@login_required(login_url='login')
 def updateQuestion(request, pk):
     """ A method for updating specific question """
     question = Question.objects.get(id=pk)
@@ -88,6 +97,8 @@ def updateQuestion(request, pk):
     context = {'form': form}
     return render(request, 'discussions/question_form.html', context)
 
+
+@login_required(login_url='login')
 def createAnswer(request):
     """ a method for creating an answer """
     form = AnswerForm()
@@ -102,6 +113,8 @@ def createAnswer(request):
     return render(request, 'discussions/answer_form.html', context)
 
 
+
+@login_required(login_url='login')
 def updateAnswer(request, pk):
     """ a method for updating specific question """
     answer = Answer.objects.get(id=pk)
@@ -116,6 +129,8 @@ def updateAnswer(request, pk):
     context = {'form': form}
     return render(request, 'discussions/answer_form.html', context)
 
+
+@login_required(login_url='login')
 def deleteRoom(request, pk):
     """ A method for deleteing a room """
     room = Room.objects.get(id=pk)
@@ -127,6 +142,8 @@ def deleteRoom(request, pk):
         return redirect('discussion')
     return render(request, 'discussions/delete.html', {'obj': room})
 
+
+@login_required(login_url='login')
 def deleteQuestion(request, pk):
     """ A method for deleting a question """
     question = Question.objects.get(id=pk)
@@ -138,6 +155,8 @@ def deleteQuestion(request, pk):
         return redirect('discussion')
     return render(request, 'discussions/delete.html', {'obj': question})
 
+
+@login_required(login_url='login')
 def deleteAnswer(request, pk):
     """ A method for deleting an answer """
     answer = Answer.objects.get(id=pk)
