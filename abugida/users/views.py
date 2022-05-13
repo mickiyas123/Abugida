@@ -58,3 +58,9 @@ def signupPage(request):
     context = {'form':form}  
     return render(request, 'users/signup.html',context)
 
+def coursesPage(request):
+    return render(request, 'users/course.html')
+    
+def aboutPage(request):
+    return render(request, 'users/about.html')
+
