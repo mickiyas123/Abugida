@@ -41,8 +41,8 @@ a {
 }
 
 .profile--small img {
-  width: 5rem;
-  height: 5rem;
+  width: 2rem;
+  height: 2rem;
 }
 
 .room-box {
@@ -107,4 +107,10 @@ a {
   background: white;
   border: 1px solid;
   color: black;
+}
+
+.room {
+  background-color: #ebebeb;
+  border-radius: 35px;
+  box-shadow: 12px 12px 0px grey;
 }
