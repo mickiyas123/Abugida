@@ -131,15 +131,23 @@ a {
   min-height: 100vh;
 }
 
-#qtitle {
+#qtitle,
+.fw {
   width: 100%;
 }
-#qdisc {
+#qdisc,
+#bio {
   width: 100%;
   height: 200px;
 }
 
-.creatq {
+.creatq,
+.editp {
   font-weight: bold;
   font-size: 200%;
+}
+
+.profilep {
+  width: 100%;
+  border: 1px solid black;
 }
