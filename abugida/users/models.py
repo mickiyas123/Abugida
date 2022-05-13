@@ -32,4 +32,4 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.user.username)
+        return str(self.username)

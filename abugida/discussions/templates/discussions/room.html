@@ -1,22 +1,32 @@
+{%  include 'main.html' %}
 <h1>Hosted by  <a href="{% url 'profile' room.host.id %}">{{ room.host.username }}</a></h1>
+{% if request.user.is_authenticated %}
 <a href="{% url 'update-room' room.id %}">Update Room</a>
 <a href="{% url 'delete-room' room.id %}">Delete Room</a>
+{% endif %}
 <a href="{% url 'create-question' %}">Create Question</a>
 <h1>{{room}}</h1>
 {% for question in room.question_set.all %}
 <h3>Question by <a href="{% url 'profile' question.querier.id %}">{{ question.querier.username }}</a></h3>
+{% if request.user.is_authenticated %}
 <a href="{% url 'update-question' question.id %}">Update question</a>
 <a href="{% url 'delete-question' question.id %}">Delete question</a>
+{% endif %}
 <h3>{{question}}</h3>
 {% for answer in question.answer_set.all %}
 <p>Answered by <a href="{% url 'profile' answer.responder.id %}">{{ answer.responder.username }}</a></p>
 <ul>
-    <li><p>{{answer}} <a href="{% url 'update-answer' answer.id %}">Update Answer</a>
+    <li><p>{{answer}} 
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'update-answer' answer.id %}">Update Answer</a>
         <a href="{% url 'delete-answer' answer.id %}">Delete Answer</a> 
+        {% endif %}
     </p>
     </li>
 </ul>
 {% endfor %}
+{% if request.user.is_authenticated %}
 <a href="{% url 'create-answer' %}">Create Answer</a>
+{% endif %}
 <hr>
 {% endfor %}

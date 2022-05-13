@@ -38,7 +38,7 @@ def room(request, pk):
 def createRoom(request):
     """ A method for creating new room """
     form = RoomForm()
-
+   
     if request.method == 'POST':
         form = RoomForm(request.POST)
 
