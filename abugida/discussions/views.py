@@ -36,14 +36,17 @@ def room(request, pk):
 
 @login_required(login_url='login')
 def createRoom(request):
+    profile = request.user.profile
     """ A method for creating new room """
     form = RoomForm()
-   
+
     if request.method == 'POST':
         form = RoomForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            room = form.save(commit=False)
+            room.host = profile
+            room.save()
             return redirect('discussion')
     context = {'form': form}
     return render(request, 'discussions/room_form.html', context)
