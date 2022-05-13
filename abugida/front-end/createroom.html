@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <head>
+            <meta charset="UTF-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            />
+
+            <title>room</title>
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+            />
+
+            <link
+                href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+                rel="stylesheet"
+                integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+                crossorigin="anonymous"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+            />
+            <link rel="stylesheet" href="./style/styleroom.css" />
+        </head>
+    </head>
+    <body>
+        <header class="header bg-dark pt-3">
+            <div class="container d-flex justify-content-between">
+                <div>
+                    <a href="/" class="">
+                        <h1>Abogida</h1>
+                    </a>
+                </div>
+
+                <div>
+                    <nav class="header-nav">
+                        <div class="d-flex">
+                            <div class="me-5">
+                                <h1>
+                                    <a href="/">Back to home</a>
+                                </h1>
+                            </div>
+                            <div>
+                                <a href="profile.html">
+                                    <div class="d-flex justify-content-between">
+                                        <div
+                                            class="profile profile--small active"
+                                        >
+                                            <img
+                                                src="./profile-1524859358747-2fed3690d7a4.jfif"
+                                            />
+                                        </div>
+                                        <div class="mx-2">
+                                            <p>
+                                                user name <<br />
+                                                <span>@username</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                <br />
+                                <div class="">
+                                    <a href="login.html" class=""> Logout</a>
+                                </div>
+                                <button class="dropdown-button"></button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <section class="bg-white pt-1">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-8 room mt-5">
+                        <form action="#" class="mt-5 mx-5">
+                            <div
+                                class="border-bottom border-white d-flex justify-content-center creatq"
+                            >
+                                Create new room
+                            </div>
+                            <div class="my-3 qtitle">
+                                <label for="qtitle ">room topic</label>
+                                <br />
+                                <input type="text" id="qtitle" name="qtitle" />
+                            </div>
+                            <div>
+                                <p>
+                                    <label for="qdisc">room discription</label>
+                                </p>
+                                <textarea id="qdisc" name="qdisc">
+                                
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam impedit soluta molestias ipsa, cum dicta tempore. Blanditiis eligendi enim quos minus nam! Enim deleniti, iusto dolorum odio quam ea totam!</textarea
+                                >
+                            </div>
+
+                            <br />
+
+                            <div
+                                class="gap-2 d-flex justify-content-end border-top border-white"
+                            >
+                                <a
+                                    class="btn cancel my-3 text-white"
+                                    href="./roomindex.html"
+                                    role="button"
+                                    >cancel</a
+                                >
+                                <div>
+                                    <button
+                                        class="btn m-3 text-white"
+                                        type="submit"
+                                    >
+                                        Create
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
