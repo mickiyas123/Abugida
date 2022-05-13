@@ -6,7 +6,7 @@ from .models import Profile
 # Create your views here.
 
 
-def loginPage(request):
+def loginUser(request):
     """ A function for logging in user """
     if request.method == 'POST':
         username = request.POST['username']
@@ -25,6 +25,12 @@ def loginPage(request):
         else:
             print("username or password is incorrect")
     return render(request, 'users/login_register.html')
+
+
+def logoutUser(request):
+    """ A function to logout user """
+    logout(request)
+    return redirect('discussion')
 
 def profile(request, pk):
     """ A function for retreving profile """
