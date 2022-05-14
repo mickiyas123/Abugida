@@ -1,6 +1,6 @@
 {%  include 'main.html' %}
 <h1>Hosted by  <a href="{% url 'profile' room.host.id %}">{{ room.host.username }}</a></h1>
-{% if request.user.is_authenticated %}
+{% if request.user.profile == room.host %}
 <a href="{% url 'update-room' room.id %}">Update Room</a>
 <a href="{% url 'delete-room' room.id %}">Delete Room</a>
 {% endif %}
@@ -8,7 +8,7 @@
 <h1>{{room}}</h1>
 {% for question in room.question_set.all %}
 <h3>Question by <a href="{% url 'profile' question.querier.id %}">{{ question.querier.username }}</a></h3>
-{% if request.user.is_authenticated %}
+{% if request.user.profile == question.querier %}
 <a href="{% url 'update-question' question.id %}">Update question</a>
 <a href="{% url 'delete-question' question.id %}">Delete question</a>
 {% endif %}
@@ -17,7 +17,7 @@
 <p>Answered by <a href="{% url 'profile' answer.responder.id %}">{{ answer.responder.username }}</a></p>
 <ul>
     <li><p>{{answer}} 
-        {% if request.user.is_authenticated %}
+        {% if request.user.profile == answer.responder %}
         <a href="{% url 'update-answer' answer.id %}">Update Answer</a>
         <a href="{% url 'delete-answer' answer.id %}">Delete Answer</a> 
         {% endif %}
