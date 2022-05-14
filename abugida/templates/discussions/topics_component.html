@@ -3,7 +3,7 @@
         <h2>Browse Topics</h2>
         <form class="">
             <label>
-                <input
+                <input name="q" 
                 class="search"
                 placeholder="Search for rooms..."
                 />
@@ -27,7 +27,7 @@
 
     {% for topic in topics %}
     <li class="my-5">
-        <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}<span>{{topic.room_set.all.count}}</span></a>
+        <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}<span> {{topic.room_set.all.count}}</span></a>
     </li>
     {% endfor %}
 

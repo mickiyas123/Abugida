@@ -89,7 +89,7 @@
                 <div class="d-flex justify-content-between m-5">
                     <div>
                         <h2>Discusion Room</h2>
-                        <p class="text-muted">100 Rooms available</p>
+                        <p class="text-muted">{{room_count}}</p>
                     </div>
                     <div class="{% url 'create-room' %}">
                         <a
@@ -98,19 +98,25 @@
                         >
                         Create Room
                     </a>
+                     <a
+                        class="btn text-white p-2"
+                        href="{% url 'create-question' %}"
+                        >
+                        Ask question
+                    </a>
                 </div>
             </div>
             <div class="room-lists p-5">
-                
-               {% include 'discussions/feed_component.html' %}
-               
+
+             {% include 'discussions/feed_component.html' %}
 
 
-               
-           </div>
-           
-       </div>
-   </div>
+
+
+         </div>
+
+     </div>
+ </div>
 </main>
 </section>
 </body>

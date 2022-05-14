@@ -87,6 +87,7 @@ a:hover {
   text-align: center;
   order: 3;
   display: none;
+  text-decoration: none;
 }
 .iem.active {
   display: block;

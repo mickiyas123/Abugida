@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Room, Topic, Questions, User
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .forms import RoomForm
+from .forms import RoomForm, QuestionForm
 
 
 
@@ -18,11 +18,12 @@ def discussions(request):
 
    topics = Topic.objects.all()[0:5]
    room_count = rooms.count()
+   room_discription = Room.description
    room_messages = Questions.objects.filter(
       Q(room__topic__name__icontains=q))[0:3]
 
    context = {'rooms': rooms, 'topics': topics,
-            'room_count': room_count, 'room_messages': room_messages}
+            'room_count': room_count, 'room_messages': room_messages, 'room_discription': room_discription}
 
 
 
@@ -51,3 +52,16 @@ def createRoom(request):
     context = {'form': form, 'topics': topics}
     return render(request, 'discussions/room_form.html', context) 
 
+@login_required(login_url='login')
+def createQuestion(request):
+    """ A method for creating question """
+    form = QuestionForm()
+
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('discussion')
+    context = {'form': form}
+    return render(request, 'discussions/questions_form.html', context)
