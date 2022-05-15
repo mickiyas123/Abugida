@@ -155,3 +155,17 @@ a {
 .dropdown li a {
   font-size: 15px;
 }
+
+.btn-conf {
+  width: 20%;
+}
+
+.delete-box {
+  /* margin-top: ; */
+  min-height: 50vh;
+
+  /* align-items: center; */
+}
+.del-box {
+  background-color: #ebebeb;
+}
