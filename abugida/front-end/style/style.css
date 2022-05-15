@@ -5,6 +5,10 @@
   list-style: none;
   box-sizing: border-box;
 }
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
 
 body {
   font-family: sans-serif;
@@ -13,7 +17,7 @@ body {
 }
 nav {
   background-color: #222;
-  padding: 5px 20px;
+  padding: 0px 0px;
   position: fixed;
   z-index: 1;
 }
@@ -33,6 +37,7 @@ a:hover {
 }
 .menu li a {
   display: block;
+  text-decoration: none;
 }
 .logo a {
   font-size: 10px;
@@ -88,7 +93,7 @@ a:hover {
   order: 3;
   display: none;
 }
-.iem.active {
+.item.active {
   display: block;
 }
 
@@ -148,6 +153,7 @@ a:hover {
   }
   .button.secondary a {
     background: transparent;
+    color: white;
   }
   .button a:hover {
     transition: all 0.25s;
@@ -155,6 +161,7 @@ a:hover {
   .button:not(.secondary) a:hover {
     background-color: #006d6d;
     border-color: #005959;
+    color: white;
   }
 }
 @media all and (min-width: 760px) {
@@ -309,14 +316,6 @@ a:hover {
   /* margin-bottom: 30px; */
 }
 
-.list:hover {
-  transition: 0.2s ease-in !important;
-  transform: scale(1.2);
-  background: #222222 !important;
-  color: white;
-  z-index: 1;
-}
-
 .about-img {
   height: 60vh;
   width: 100%;
@@ -330,6 +329,11 @@ a:hover {
   background-color: white;
   border-radius: 35px;
   box-shadow: 12px 12px 22px grey;
+  min-height: 100vh;
+}
+
+.log a {
+  color: blue;
 }
 
 .login-btn {
@@ -349,8 +353,9 @@ a:hover {
   color: black;
 }
 
-.log a {
-  color: rgb(27, 37, 172);
-  text-decoration: none;
+.logo-div {
+  width: 20%;
+  height: auto;
 }
+
 /* discusion room */

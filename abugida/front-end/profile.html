@@ -26,60 +26,55 @@
     </head>
 </head>
 <body>
-    <header class="header bg-dark pt-5">
-        <div class="container d-flex justify-content-between">
-            <div>
-                <a href="/" class="">
-                    
-                    <h1>Abogida</h1>
-                  </a>
-            </div>
-          
-          <div>
-            <nav class="header-nav">
-                <div class="d-flex">
-                    <div class="me-5">
-                        <h1>
-                            <a href="/">Back to home</a>
-                        </h1>
-                    </div>
-                    <div>
-                        <a href="profile.html">
-                            <div class="d-flex justify-content-between">
-                              
-                              <div class="profile profile--small active">
-                                  <img src="./profile-1524859358747-2fed3690d7a4.jfif" />
-                                </div>
-                                <div class="mx-2">
-                                  <p>John Doe <<br> <span>@john_doe</span></p>
-                                </div>
-                                
-                            </div>
-                          
-                        </a>
-                        
-                        
-                    </div>
-                    <div>
-                        <br>
-                    <div class="">
-                            
-                            <a href="login.html" class="">
-                              Logout</a>
-                          </div>
-                        <button class="dropdown-button">
-                      
-                        </button>
-                    </div>
-                  
-                </div>
-      
-                
-              </nav>
-          </div>
-          
+  <header class="header bg-dark pt-3">
+    <div class="container d-flex justify-content-between">
+        <div class="logo-div col-3">
+            <a href="./index.html"
+                ><img src="./img/2-removebg-preview.png" alt=""
+            /></a>
         </div>
-      </header>
+        <!-- if loged in the header looks like this -->
+        <div>
+            <nav class="header-nav d-flex">
+                <div class="header__user">
+                    <a href="profile.html">
+                        <div class="profile profile--small active">
+                            <img
+                                src="https://randomuser.me/api/portraits/men/37.jpg"
+                            />
+                        </div>
+                        <p>John Doe <br /><span>@john_doe</span></p>
+                    </a>
+                </div>
+                <div class="dropdown bg-dark">
+                    <button
+                        class="btn btn-dark dropdown-toggle"
+                        id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    ></button>
+                    <ul
+                        class="dropdown-menu bg-dark"
+                        aria-labelledby="dropdownMenuButton1"
+                    >
+                        <li>
+                            <a
+                                class="dropdown-item"
+                                href="./editprofile.html"
+                                >Edit Profile</a
+                            >
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="./login.html"
+                                >Logout</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
       <section class="bg-white pt-5">
         <div class="container ">
             <div class="row  vh-100 ">

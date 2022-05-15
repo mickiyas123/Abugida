@@ -151,3 +151,7 @@ a {
   width: 100%;
   border: 1px solid black;
 }
+
+.dropdown li a {
+  font-size: 15px;
+}
