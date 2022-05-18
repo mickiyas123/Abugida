@@ -14,7 +14,7 @@ def loginUser(request):
 
     context = {'page': page}
     if request.user.is_authenticated:
-        return render('discussion')
+        return redirect('discussion')
 
     if request.method == 'POST':
         username = request.POST['username']

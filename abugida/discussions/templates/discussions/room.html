@@ -4,7 +4,13 @@
 <a href="{% url 'update-room' room.id %}">Update Room</a>
 <a href="{% url 'delete-room' room.id %}">Delete Room</a>
 {% endif %}
-<a href="{% url 'create-question' %}">Create Question</a>
+<h1>Add Question</h1>
+
+<form action="{% url 'create-question' room.id %}" method="POST">
+    {% csrf_token %}
+    {{ question_form.as_p }}
+    <input type="submit" value="Create Question">
+</form>
 <h1>{{room}}</h1>
 {% for question in room.question_set.all %}
 <h3>Question by <a href="{% url 'profile' question.querier.id %}">{{ question.querier.username }}</a></h3>
@@ -26,7 +32,13 @@
 </ul>
 {% endfor %}
 {% if request.user.is_authenticated %}
-<a href="{% url 'create-answer' %}">Create Answer</a>
+<h1>Answer Form</h1>
+
+<form action="{%  url 'create-answer' question.id %}" method="POST">
+    {% csrf_token %}
+    {{ answer_form.as_p }}
+    <input type="submit" value="Create Answer">
+</form>
 {% endif %}
 <hr>
 {% endfor %}

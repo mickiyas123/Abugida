@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.shortcuts import render, redirect
 from .models import Question, Room ,Topic, Answer
 from .forms import RoomForm ,QuestionForm ,AnswerForm
@@ -6,11 +7,22 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+def home(request):
+    return render(request, 'discussions/index.html')
+
+def about(request):
+    return render(request, 'discussions/about.html')
+
+def course(request):
+    return render(request, 'discussions/course.html')
+
 def discussion(request):
     discussions = Room.objects.all()
     # question = rooms.question_set.all()
     # answer = rooms.answer_set.all()
-    context = {'discussions': discussions}
+    answer_form = AnswerForm()
+    context = {'discussions': discussions, 'answer_form': answer_form}
+    
     return render(request, 'discussions/discussions.html', context)
 
 # def topic(request):
@@ -30,59 +42,91 @@ def room(request, pk):
     room = Room.objects.get(id=pk)
     questions = room.question_set.all()
     answers = room.answer_set.all()
-    context = {'room': room, 'questions': questions, 'answers': answers}
+    question_form = QuestionForm()
+    answer_form = AnswerForm()
+    context = {'room': room, 'questions': questions, 'answers': answers, 'question_form': question_form, 'answer_form': answer_form}
     return render(request, 'discussions/room.html', context)
 
 
 @login_required(login_url='login')
 def createRoom(request):
-    profile = request.user.profile
     """ A method for creating new room """
+    profile = request.user.profile
+    topics = Topic.objects.all()
     form = RoomForm()
 
     if request.method == 'POST':
-        form = RoomForm(request.POST)
+        topic_name = request.POST.get("topic")
+        topic_names = []
+        for topic in topics:
+            topic_names.append(topic.name)
+        
+        if topic_name not in topic_names:
+            topic = Topic.objects.create(
+                    name=topic_name, creator=profile)
+        else:
+            topic = Topic.objects.get(name=topic_name)
 
-        if form.is_valid():
-            room = form.save(commit=False)
-            room.host = profile
-            room.save()
-            return redirect('discussion')
-    context = {'form': form}
+        new_room = Room.objects.create(
+            host=profile,
+            topic=topic,
+            name = request.POST.get("name"),
+            description = request.POST.get("description")
+        )
+        return redirect('rooms')
+    context = {'form': form, 'topics': topics}
     return render(request, 'discussions/room_form.html', context)
 
 
 @login_required(login_url='login')
 def updateRoom(request, pk):
     """ A method for updating a room """
+    profile = request.user.profile
     room = Room.objects.get(id=pk)
+    topics = Topic.objects.all()
     form = RoomForm(instance=room)
 
     if request.method == 'POST':
-        form = RoomForm(request.POST, instance=room)
+        topic_name = request.POST.get("topic")
+        topic_names = []
+        for topic in topics:
+            topic_names.append(topic.name)
+        
+        if topic_name not in topic_names:
+            topic = Topic.objects.create(
+                    name=topic_name, creator=profile)
+        else:
+            topic = Topic.objects.get(name=topic_name)
 
-        if form.is_valid():
-            form.save()
-            return redirect('discussion')
-    context = {'form': form}
+        room.name = request.POST.get('name')
+        room.topic = topic
+        room.description = request.POST.get("description")
+        room.save()
+        
+        return redirect('discussion')
+    context = {'form': form, 'room':room, 'topics': topics}
     return render(request, 'discussions/room_form.html', context)
 
 
 
 
 @login_required(login_url='login')
-def createQuestion(request):
+def createQuestion(request, pk):
     """ A method for creating question """
-    form = QuestionForm()
+    querier = request.user.profile
+    room = Room.objects.get(id=pk)
+    body = request.POST.get("body")
+    topic = room.topic
 
     if request.method == 'POST':
-        form = QuestionForm(request.POST)
+        Question.objects.create(
+            querier = querier,
+            room = room,
+            body = body,
+            topic = topic
+        )
+        return redirect('room', pk=room.id)
 
-        if form.is_valid():
-            form.save()
-            return redirect('discussion')
-    context = {'form': form}
-    return render(request, 'discussions/question_form.html', context)
 
 
 @login_required(login_url='login')
@@ -102,18 +146,23 @@ def updateQuestion(request, pk):
 
 
 @login_required(login_url='login')
-def createAnswer(request):
+def createAnswer(request, pk):
     """ a method for creating an answer """
-    form = AnswerForm()
+    responder = request.user.profile
+    question = Question.objects.get(id=pk)
+    body = request.POST.get("body")
+    room = question.room
+    topic = room.topic
 
     if request.method == 'POST':
-        form = AnswerForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            return redirect('discussion')
-    context = {'form': form}
-    return render(request, 'discussions/answer_form.html', context)
+        Answer.objects.create(
+            responder= responder,
+            question = question,
+            room = room,
+            body = body,
+            topic = topic
+        )
+        return redirect('discussion')
 
 
 

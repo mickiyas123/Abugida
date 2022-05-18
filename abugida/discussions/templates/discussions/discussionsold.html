@@ -1,0 +1,22 @@
+{%  extends 'main.html' %}
+{% block content %}
+<a href="{% url 'create-room' %}">Create Room</a>
+{%  for room in discussions %}
+ <!-- <a href="{% url 'room' room.id %}"><h1>{{room.name}}</h1></a> -->
+{% for question in room.question_set.all %}
+<h3> <a href="{% url 'room' room.id %}">{{question}}</a> </h3>
+{% for answer in question.answer_set.all %}
+<ul>
+    <li> <a href="{% url 'room' room.id %}">{{answer}}</a> </li>
+</ul>
+<br>
+{% endfor %}
+<form action="{%  url 'create-answer' question.id %}" method="POST">
+    {% csrf_token %}
+    {{ answer_form.as_p }}
+    <input type="submit" value="Create Answer">
+</form>
+<hr>
+{% endfor %}
+{% endfor %}
+{% endblock %}
