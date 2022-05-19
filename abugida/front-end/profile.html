@@ -22,60 +22,95 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
         />
+        <link rel="stylesheet" href="./style/style.css" />
         <link rel="stylesheet" href="./style/styleroom.css" />
     </head>
 </head>
 <body>
-  <header class="header bg-dark pt-3">
-    <div class="container d-flex justify-content-between">
+  <header class="container-fluid nav-section">
+    <div class="row all">
         <div class="logo-div col-3">
             <a href="./index.html"
                 ><img src="./img/2-removebg-preview.png" alt=""
             /></a>
         </div>
-        <!-- if loged in the header looks like this -->
-        <div>
-            <nav class="header-nav d-flex">
-                <div class="header__user">
-                    <a href="profile.html">
-                        <div class="profile profile--small active">
-                            <img
-                                src="https://randomuser.me/api/portraits/men/37.jpg"
+
+        <div class="col-9 list_items">
+            <ul class="menu">
+                <li class="item">
+                    <div class="search">
+                        <div>
+                            <input
+                                class="search-box"
+                                type="search"
+                                placeholder="search here"
                             />
                         </div>
-                        <p>John Doe <br /><span>@john_doe</span></p>
-                    </a>
-                </div>
-                <div class="dropdown bg-dark">
-                    <button
-                        class="btn btn-dark dropdown-toggle"
-                        id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                    ></button>
-                    <ul
-                        class="dropdown-menu bg-dark"
-                        aria-labelledby="dropdownMenuButton1"
-                    >
-                        <li>
-                            <a
-                                class="dropdown-item"
-                                href="./editprofile.html"
-                                >Edit Profile</a
-                            >
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="./login.html"
-                                >Logout</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+                        <div>
+                            <a class="search-btn" href="#">
+                                <i
+                                    class="fa fa-search"
+                                    aria-hidden="true"
+                                ></i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="item"><a href="./index.html">HOME</a></li>
+                <li class="item"><a href="./about.html">ABOUT</a></li>
+                <li class="item">
+                    <a href="./roomindex.html">DISCUSION</a>
+                </li>
+                <li class="item"><a href="./couse.html">COURSE</a></li>
+                <li class="item"><a href="#">TEACHERS</a></li>
+                <li class="item"> 
+                    <div class="header-nav d-flex">
+                        <div class="header__user">
+                            <a href="profile.html">
+                                <div class="profile profile--small active">
+                                    <img
+                                    src="./profile-1524859358747-2fed3690d7a4.jfif"
+                                    />
+                                </div>
+                                <p>user name <br /><span>@username</span></p>
+                            </a>
+                        </div>                                                           
+                    <div class="dropdown bg-dark">
+                                <button
+                                    class="btn btn-dark dropdown-toggle"
+                                    id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                ></button>
+                                <ul
+                                    class="dropdown-menu bg-dark"
+                                    aria-labelledby="dropdownMenuButton1"
+                                >
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="./editprofile.html"
+                                            >Edit Profile</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="./login.html"
+                                            >Logout</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                </li>
+                <li class="toggle">
+                    <a href="#"><span class="bars"></span></a>
+                </li>
+            </ul>
         </div>
     </div>
 </header>
-      <section class="bg-white pt-5">
+      <section class="bg-white pt-5 mt-5 roomsec">
         <div class="container ">
             <div class="row  vh-100 ">
               <!-- Topics Start -->
