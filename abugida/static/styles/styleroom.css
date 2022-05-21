@@ -52,6 +52,7 @@ a {
   background-color: white;
   border-radius: 35px;
   box-shadow: 12px 12px 22px grey;
+  min-height: 100vh;
 }
 
 .room-lists {
@@ -168,4 +169,44 @@ a {
 }
 .del-box {
   background-color: #ebebeb;
+}
+
+/* course dashbord  */
+.dashbord {
+  min-height: 100vh;
+}
+
+.dashbord li {
+  list-style: none;
+}
+
+.dashbord li a {
+  text-decoration: none;
+  font-size: large;
+  line-height: 100px;
+}
+
+/* modify header if loged in  */
+.nav-section li a {
+  color: white;
+  
+}
+.nav-section{
+  top: 0;
+}
+.roomsec{
+  margin-top: 5% !important;
+}
+/* section{
+  margin-top: 1000px;
+} */
+/* .roomsec{
+  margin-top: 1000px;
+} */
+
+.roomqes a{
+  text-decoration: none;
+}
+.roomqes a:hover{
+  color: #005959;
 }
