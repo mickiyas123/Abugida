@@ -83,20 +83,14 @@ def updateRoom(request, pk):
     """ A method for updating a room """
     profile = request.user.profile
     room = Room.objects.get(id=pk)
+    topic = room.topic
     topics = Topic.objects.all()
     form = RoomForm(instance=room)
 
     if request.method == 'POST':
         topic_name = request.POST.get("topic")
-        topic_names = []
-        for topic in topics:
-            topic_names.append(topic.name)
-        
-        if topic_name not in topic_names:
-            topic = Topic.objects.create(
-                    name=topic_name, creator=profile)
-        else:
-            topic = Topic.objects.get(name=topic_name)
+        topic.name = topic_name
+        topic.save()
 
         room.name = request.POST.get('name')
         room.topic = topic
