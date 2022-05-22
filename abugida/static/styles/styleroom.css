@@ -52,13 +52,13 @@ a {
   background-color: white;
   border-radius: 35px;
   box-shadow: 12px 12px 22px grey;
+  min-height: 100vh;
 }
 
 .room-lists {
   background-color: #ebebeb;
   border-radius: 35px;
   box-shadow: 12px 12px 0px grey;
-  width: 100%;
 }
 .btn {
   background-color: #005959;
@@ -151,4 +151,62 @@ a {
 .profilep {
   width: 100%;
   border: 1px solid black;
+}
+
+.dropdown li a {
+  font-size: 15px;
+}
+
+.btn-conf {
+  width: 20%;
+}
+
+.delete-box {
+  /* margin-top: ; */
+  min-height: 50vh;
+
+  /* align-items: center; */
+}
+.del-box {
+  background-color: #ebebeb;
+}
+
+/* course dashbord  */
+.dashbord {
+  min-height: 100vh;
+}
+
+.dashbord li {
+  list-style: none;
+}
+
+.dashbord li a {
+  text-decoration: none;
+  font-size: large;
+  line-height: 100px;
+}
+
+/* modify header if loged in  */
+.nav-section li a {
+  color: white;
+  
+}
+.nav-section{
+  top: 0;
+}
+.roomsec{
+  margin-top: 5% !important;
+}
+/* section{
+  margin-top: 1000px;
+} */
+/* .roomsec{
+  margin-top: 1000px;
+} */
+
+.roomqes a{
+  text-decoration: none;
+}
+.roomqes a:hover{
+  color: #005959;
 }

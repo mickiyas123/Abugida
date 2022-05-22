@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
-from .models import Room, User, Questions, answers
+from .models import Room, User, Questions, Answers
 
 
 
@@ -16,9 +16,10 @@ class QuestionForm(ModelForm):
     class Meta:
         model = Questions
         fields = '__all__'
+        exclude = ['user']
 
 class AnswerForm(ModelForm):
     class Meta:
-        model = answers
+        model = Answers
         fields = '__all__'
 

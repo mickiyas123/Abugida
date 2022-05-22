@@ -5,17 +5,22 @@
   list-style: none;
   box-sizing: border-box;
 }
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
 
 body {
   font-family: sans-serif;
   /* font-size: 3px; */
   /* width: 100%; */
 }
-nav {
+header, nav {
   background-color: #222;
-  padding: 5px 20px;
+
+  padding: 0px 0px;
   position: fixed;
-  z-index: 1;
+  z-index: 50;
 }
 a {
   color: white;
@@ -33,6 +38,7 @@ a:hover {
 }
 .menu li a {
   display: block;
+  text-decoration: none;
 }
 .logo a {
   font-size: 10px;
@@ -87,9 +93,8 @@ a:hover {
   text-align: center;
   order: 3;
   display: none;
-  text-decoration: none;
 }
-.iem.active {
+.item.active {
   display: block;
 }
 
@@ -149,6 +154,7 @@ a:hover {
   }
   .button.secondary a {
     background: transparent;
+    color: white;
   }
   .button a:hover {
     transition: all 0.25s;
@@ -156,6 +162,7 @@ a:hover {
   .button:not(.secondary) a:hover {
     background-color: #006d6d;
     border-color: #005959;
+    color: white;
   }
 }
 @media all and (min-width: 760px) {
@@ -201,7 +208,7 @@ a:hover {
 
 .section1 {
   background-image: linear-gradient(rgba(9, 5, 54, 0.3), rgba(5, 4, 46, 0.7)),
-    url(../img/section.jpg);
+    url(../images/section.jpg);
   width: 100%;
   height: 100vh;
   background-position: center;
@@ -295,7 +302,7 @@ a:hover {
 
 .about-section1 {
   background-image: linear-gradient(rgba(9, 5, 54, 0.3), rgba(5, 4, 46, 0.7)),
-    url(../img/pexels-julia-m-cameron-4145153.jpg);
+    url(../static/images/pexels-julia-m-cameron-4145153.jpg);
   width: 100%;
   height: 50vh;
   background-position: center;
@@ -308,14 +315,6 @@ a:hover {
   align-items: center;
   text-align: center;
   /* margin-bottom: 30px; */
-}
-
-.list:hover {
-  transition: 0.2s ease-in !important;
-  transform: scale(1.2);
-  background: #222222 !important;
-  color: white;
-  z-index: 1;
 }
 
 .about-img {
@@ -331,6 +330,11 @@ a:hover {
   background-color: white;
   border-radius: 35px;
   box-shadow: 12px 12px 22px grey;
+  min-height: 100vh;
+}
+
+.log a {
+  color: blue;
 }
 
 .login-btn {
@@ -350,8 +354,9 @@ a:hover {
   color: black;
 }
 
-.log a {
-  color: rgb(27, 37, 172);
-  text-decoration: none;
+.logo-div {
+  width: 20%;
+  height: auto;
 }
-/* discusion room */
+
+/* discusion room *
