@@ -91,12 +91,12 @@
                                     <li>
                                         <a
                                             class="dropdown-item"
-                                            href="./editprofile.html"
+                                            href="{% url 'edit-account' %}"
                                             >Edit Profile</a
                                         >
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="./login.html"
+                                        <a class="dropdown-item" href="{% url 'logout' %}"
                                             >Logout</a
                                         >
                                     </li>
@@ -124,7 +124,7 @@
                 <div class="profile py-5">
                     <div class="profile-img">
                       <div class="profile-medium active ">
-                        <img class="center" src="./profile-1524859358747-2fed3690d7a4.jfif">
+                        <img class="center" src="{{profile.profile_pic.url}}">
                       </div>
                     </div>
                     <div class="desc mx-auto my-5">
@@ -133,7 +133,7 @@
 
                       {% if profile.user == request.user %}
 
-                      <a href="./editprofile.html" class="btn pt-4">Edit Profile</a>
+                      <a href="{% url 'account' %}" class="btn pt-4">Edit Profile</a>
                       {% endif %}
                     </div>
                     <div class="about-profile my-5">
@@ -146,11 +146,12 @@
 
                   <div>
                      <h1>
-                        room topic shared by Username
+                        room topic shared by {{profile.username}}
                      </h1> 
 
                 </div>
                 <!-- first shared room -->
+                {% for message in room_messages %}
 
                     <div class="room-lists p-5 my-center my-5">
                       <div class="d-flex justify-content-between">
@@ -167,8 +168,7 @@
                       <div class="py-5 border-bottom border-white">
                         <a href="room.html"><h1>Discussion title</h1></a>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur ducimus harum dolorem, obcaecati
-                          mollitia omnis quasi aut consequuntur enim itaque labore.
+                          {{message.room}}
                         </p>
                       </div>
                       <div class="d-flex justify-content-between pt-3">
@@ -179,6 +179,7 @@
                         <p class="">topic title</p>
                       </div>
                     </div>
+                    {% endfor %}
 
             </div>
         </div>

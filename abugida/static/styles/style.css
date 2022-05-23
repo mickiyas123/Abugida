@@ -359,4 +359,25 @@ a:hover {
   height: auto;
 }
 
+
+.rprofile {
+  margin-top: 5%!important;
+
+}
+
+input[type=text],
+input[type=email],
+input[type=file],
+input[type=number],
+input[type=password],
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    text-align: left;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin: 8px 0;
+}
 /* discusion room *

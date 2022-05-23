@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
     <head>
         <head>
@@ -26,20 +25,19 @@
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
             />
-            <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
-            <link rel="stylesheet" href="{% static 'styles/styleroom.css' %}" />
-           
+            <link rel="stylesheet" href="./style/style.css" />
+            <link rel="stylesheet" href="./style/styleroom.css" />
         </head>
     </head>
     <body>
         <header class="container-fluid nav-section">
             <div class="row all">
                 <div class="logo-div col-3">
-                    <a href="{% url 'home' %}"
-                        ><img src="{% static 'images/2-removebg-preview.png'  %}" alt=""
+                    <a href="./index.html"
+                        ><img src="./img/2-removebg-preview.png" alt=""
                     /></a>
                 </div>
-
+        
                 <div class="col-9 list_items">
                     <ul class="menu">
                         <li class="item">
@@ -61,13 +59,13 @@
                                 </div>
                             </div>
                         </li>
-
-                        <li class="item"><a href="{% url 'home' %}">HOME</a></li>
-                        <li class="item"><a href="{% url 'about' %}">ABOUT</a></li>
+        
+                        <li class="item"><a href="./index.html">HOME</a></li>
+                        <li class="item"><a href="./about.html">ABOUT</a></li>
                         <li class="item">
-                            <a href="{% url 'discussions' %}">DISCUSION</a>
+                            <a href="./roomindex.html">DISCUSION</a>
                         </li>
-                        <li class="item"><a href="{% url 'courses' %}">COURSE</a></li>
+                        <li class="item"><a href="./couse.html">COURSE</a></li>
                         <li class="item"><a href="#">TEACHERS</a></li>
                         <li class="item"> 
                             <div class="header-nav d-flex">
@@ -75,10 +73,10 @@
                                     <a href="profile.html">
                                         <div class="profile profile--small active">
                                             <img
-                                                src="./profile-1524859358747-2fed3690d7a4.jfif"
+                                            src="./profile-1524859358747-2fed3690d7a4.jfif"
                                             />
                                         </div>
-                                        <p>{{request.username}} <br /><span>@{{profile.username}}</span></p>
+                                        <p>user name <br /><span>@username</span></p>
                                     </a>
                                 </div>                                                           
                             <div class="dropdown bg-dark">
@@ -95,7 +93,7 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="{}"
+                                                    href="./editprofile.html"
                                                     >Edit Profile</a
                                                 >
                                             </li>
@@ -115,18 +113,81 @@
                 </div>
             </div>
         </header>
-        
-        <section class="bg-white pt-5 mt-5 roomsec">
-            <main class="container mt-5">
-                <div class="row vh-100 ">
-                   
-                    {% include 'discussions/topics_component.html' %}
-                    
+        <section class="bg-white pt-5 mt-5  roomsec">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-8 room">
+                        <div class="m-5 text-center">
+                            <h1 class="editp">Edit Profile</h1>
+                        </div>
+                        <form class="form m-3" action="#">
+                            <div class="m-2">
+                                <label for="profilep">profile pic</label>
+                                <br />
+                                <input
+                                    id="profilep"
+                                    name="profilep"
+                                    type="file"
+                                    class="profilep p-3"
+                                />
+                            </div>
 
-                    <!--room topic  starts -->
-                   {% include 'discussions/feed_component.html' %}
+                            <div class="my-5">
+                                <label for="name">Username</label>
+                                <br />
+                                <input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    placeholder="full Name"
+                                    class="fw p-3"
+                                />
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="email">Email</label>
+                                <br />
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="text"
+                                    placeholder="username@email.com"
+                                    class="fw p-3"
+                                />
+                            </div>
+
+                            <div class="mb-5">
+                                <label for="bio">Bio</label>
+                                <br />
+                                <textarea
+                                    name="bio"
+                                    id="bio"
+                                    placeholder="write your bio here"
+                                    class="fw p-3"
+                                ></textarea>
+                            </div>
+                            <div
+                                class="gap-2 d-flex justify-content-end border-top border-white"
+                            >
+                                <a
+                                    class="btn cancel my-3 pt-3 text-white"
+                                    href="./profile.html"
+                                    role="button"
+                                    >cancel</a
+                                >
+                                <div>
+                                    <button
+                                        class="btn m-3 px-5 text-white"
+                                        type="submit"
+                                    >
+                                        update
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </main>
+            </div>
         </section>
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

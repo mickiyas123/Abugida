@@ -17,9 +17,28 @@
                                 <div class="pt-2 "><img style="width: 100%;" src="{% static 'images/image-removebg-preview.png' %}" alt=""></div>
             
                             </div>
+                            {% for field in form %}
+
+                            <label><h4>{{field.label}}</h4></label>
+                            
+
+                            {{field}} 
+
+
+                {% for error in field.errors %}
+              <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                  <use xlink:href="#exclamation-triangle-fill" />
+                </svg>
+                <div>
+                  {{ error }}
+                </div>
+                </div>
+              {% endfor %}
+                            {% endfor %}
 
                             
-                            {{form.as_p}}
+                           
                             
                             <div class="form-row my-5">
                                 <div class="col-7 mx-auto">

@@ -37,7 +37,7 @@
             <a href="{% url 'profile' question.user.id %}" class="d-flex">
                 <div class="profile profile--small">
                     <img
-                    src="./profile-1524859358747-2fed3690d7a4.jfif"
+                    src="{{question.user.profile_pic.url}}"
                     />
                 </div>
                 <span>{{question.user.username}}</span>
@@ -75,7 +75,7 @@
                     <a href="{% url 'profile' answer.user.id %}" class="d-flex">
                         <div class="profile profile--small">
                             <img
-                            src="./profile-1524859358747-2fed3690d7a4.jfif"
+                            src="{{answer.user.profile_pic.url}}"
                             />
                         </div>
                         <span>@{{answer.user.username}}</span>
@@ -120,7 +120,7 @@
 
   <div class="d-flex justify-content-between pt-3 ">
     <a href="room.html" class=""> 5 Joined </a>
-    <p class="">topic title</p>
+    <p class="">{{room.title}}</p>
 </div>
 
 </div>
