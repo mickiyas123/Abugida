@@ -5,6 +5,7 @@
 <a href="{% url 'delete-room' room.id %}">Delete Room</a>
 {% endif %}
 <h1>Add Question</h1>
+<h1><a href="{% url 'update-room' room.id %}">Update Room</a></h1>
 
 <form action="{% url 'create-question' room.id %}" method="POST">
     {% csrf_token %}

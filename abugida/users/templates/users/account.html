@@ -1,27 +1,59 @@
-<a href="{% url 'discussion' %}">Discussions</a>
-<img src="{{ profile.profile_pic.url }}" style="width: 100;">
-<a href="{% url 'edit-account' %}">Edit Account</a>
-{% if profile.name %}
-<h1>{{profile.name}}</h1>
-{% endif %}
-{% if profile.username %}
-<h2>{{profile.username}}</h2>
-{% endif %}
-{% if profile.github_account %}
-<p>{{profile.github_account}}</p>
-{% endif %}
-{% if profile.linkedin_account %}
-<p>{{ profile.linkedin_account }}</p>
-{% endif %}
-{% if profile.personal_website %}
-<p>{{profile.personal_website}}</p>
-{% endif %}
-{% if profile.twitter_account %}
-<p>{{ profile.twitter_account }}</p>
-{% endif %}
+{% extends 'main.html' %}
+{% block content %}
+      <section class="bg-white pt-5 mt-5 roomsec">
+        <div class="container ">
+            <div class="row  vh-100 ">
+              <!-- Topics Start -->
+              <!-- Topics End -->
+      
+              <!-- Room List Start -->
+              <div class=" mx-5 col-8 roomList room-box p-5">
 
-<h2>Rooms you are in</h2>
-{% for room in profile.room_set.all %}
-<a href="{% url 'room' room.id %}">{{ room.name }}</a>
-<br>
-{% endfor %}
+                <div class="profile py-5">
+                    <div class="profile-img">
+                      <div class="profile-medium active ">
+                        <img class="center" src="{{ profile.profile_pic.url }}">
+                      </div>
+                    </div>
+                    <div class="desc mx-auto my-5">
+                      {% if profile.name %}
+                      <h3>{{profile.name}}</h3>
+                      {% endif %}
+                      {%  if profile.username %}
+                      <p>@{{profile.username}}</p>
+                      {% endif %}
+                      <a href="{% url 'edit-account' %}" class="btn pt-4">Edit Profile</a>
+                    </div>
+                    <div class="about-profile my-5">
+                      <h3 class="my-5">About</h3>
+                      <p>
+                        {% if profile.bio %}
+                        <p>{{profile.bio}}</p>
+                        {% endif %}
+                        {% if profile.github_account %}
+                        <p>{{profile.github_account}}</p>
+                        {% endif %}
+                        {% if profile.linkedin_account %}
+                        <p>{{ profile.linkedin_account }}</p>
+                        {% endif %}
+                        {% if profile.personal_website %}
+                        <p>{{profile.personal_website}}</p>
+                        {% endif %}
+                        {% if profile.twitter_account %}
+                        <p>{{ profile.twitter_account }}</p>
+                        {% endif %}
+                      </p>
+                    </div>
+                  </div>
+
+                  <h2>Rooms you are in</h2>
+                  {% for room in profile.room_set.all %}
+                  <a href="{% url 'room' room.id %}">{{ room.name }}</a>
+                  <br>
+                  {%  endfor %}
+
+            </div>
+        </div>
+          </main>
+      </section>
+{% endblock content %}

@@ -15,11 +15,11 @@ body {
   /* font-size: 3px; */
   /* width: 100%; */
 }
-nav {
+header {
   background-color: #222;
   padding: 0px 0px;
   position: fixed;
-  z-index: 1;
+  z-index: 50;
 }
 a {
   color: white;
@@ -207,7 +207,7 @@ a:hover {
 
 .section1 {
   background-image: linear-gradient(rgba(9, 5, 54, 0.3), rgba(5, 4, 46, 0.7)),
-    url(../images/section.jpg);
+    url(../img/section.jpg);
   width: 100%;
   height: 100vh;
   background-position: center;
