@@ -16,7 +16,7 @@ class QuestionForm(ModelForm):
     class Meta:
         model = Questions
         fields = '__all__'
-        exclude = ['user']
+        exclude = ['user','topic']
 
 class AnswerForm(ModelForm):
     class Meta:

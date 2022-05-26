@@ -43,6 +43,7 @@ class Questions(models.Model):
 	id = models.UUIDField( default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 	user = models.ForeignKey(Profile, on_delete=models.CASCADE)
 	room = models.ForeignKey(Room, on_delete=models.CASCADE)
+	topic = models.ForeignKey(Topic,on_delete=models.SET_NULL, null=True)
 	body = models.TextField()
 
 	body_image = models.ImageField(null=True, blank=True, upload_to='questions/')

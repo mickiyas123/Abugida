@@ -195,7 +195,7 @@ a {
   top: 0;
 }
 .roomsec{
-  margin-top: 5% !important;
+  margin-top: 10% !important;
 }
 /* section{
   margin-top: 1000px;
@@ -210,8 +210,8 @@ a {
 .roomqes a:hover{
   color: #005959;
 }
-
-.rprofile {
-  margin-top: 5px !important;
+.accountedit{
+  margin-top: 10%!important;
 
 }
+

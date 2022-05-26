@@ -65,9 +65,11 @@
 
 
         <div class="answer">
+            
             <div class="answernumber py-2">
-                5 answers provided
+               {{question.answers_set.all.count}} answers provided
             </div>
+
             {% for answer in question.answers_set.all %}
 
             <div class="ms-5 border-bottom border-white">

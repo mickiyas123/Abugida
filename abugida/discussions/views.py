@@ -31,13 +31,16 @@ def discussions(request):
         Q(name__icontains=q) |
         Q(description__icontains=q)
         )
+    prof = request.user.profile 
+
+
     questions = Questions.objects.all()
     topics = Topic.objects.all()[0:5]
     room_count = rooms.count()
     room_discription = Room.description
     room_messages = Questions.objects.filter(
         Q(room__topic__name__icontains=q))[0:3]
-    context = {'questions': questions, 'rooms': rooms, 'topics': topics,'room_count': room_count, 'room_messages': room_messages, 'room_discription': room_discription}
+    context = {'prof': prof,'questions': questions, 'rooms': rooms, 'topics': topics,'room_count': room_count, 'room_messages': room_messages, 'room_discription': room_discription}
     return render(request, 'discussions/discussions.html', context)
 
 
@@ -51,7 +54,7 @@ def rooms(request):
 
 def room(request, pk):
     """ A method that shows a specific room"""
-    question = Questions.objects.all()
+   # question = Questions.objects.all()
     room = Room.objects.get(id=pk)
     questions = room.questions_set.all()
     answers = room.answers_set.all()
@@ -88,31 +91,47 @@ def createRoom(request):
 
 
 
+
 @login_required(login_url='login')
 def createQuestion(request):
     """ A method for creating question """
-    querier = request.user.profile
-    room = Room.objects.all()
-    body = request.POST.get("body")
-    #topic = room.topic
     form = QuestionForm()
 
     if request.method == 'POST':
-        room_name = request.POST.get('room')
-        room, created = Room.objects.get_or_create(name=room_name)
+        form = QuestionForm(request.POST)
+
+
+        if form.is_valid():
+            new_room=form.save(commit=False)
+            new_room.user = request.user.profile
+            new_room.save()
+            
+
+            return redirect('discussions')
         
-        Questions.objects.create(
-            user = querier,
-            room = room,
-            body = body,
-            #topic = topic
-        )
-        return redirect('discussions')
-    context = {'form': form, 'room': room}
+    context = {'form': form, 'rooms': rooms}
     return render(request, 'discussions/questions_form.html', context)
 
+    
 
 
+
+@login_required(login_url='login')
+def createroomQuestion(request, pk):
+    """ A method for creating question """
+    querier = request.user.profile
+    room = Room.objects.get(id=pk)
+    body = request.POST.get("body")
+    topic = room.topic
+
+    if request.method == 'POST':
+        Question.objects.create(
+            querier = querier,
+            room = room,
+            body = body,
+           # topic = topic
+        )
+        return redirect('room', pk=room.id)
 
 
 
