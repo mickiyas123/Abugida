@@ -66,6 +66,9 @@
                 <li class="item"><a href="{% url 'courses' %}">COURSE</a></li>
                 <li class="item"><a href="#">TEACHERS</a></li>
                 <li class="item"> 
+
+                     {% if request.user.is_authenticated %}
+
                     <div class="header-nav d-flex">
                         <div class="header__user">
                             <a href="{% url 'profile' profile.id %}">
@@ -103,6 +106,7 @@
                                 </ul>
                             </div>
                         </div>
+                         {% endif %}
                 </li>
                 <li class="toggle">
                     <a href="#"><span class="bars"></span></a>

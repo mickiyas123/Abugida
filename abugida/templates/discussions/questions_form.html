@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
 {% load static %}
+<html lang="en">
     <head>
         <head>
             <meta charset="UTF-8" />
@@ -28,14 +28,15 @@
             />
             <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
             <link rel="stylesheet" href="{% static 'styles/styleroom.css' %}" />
+           
         </head>
     </head>
     <body>
         <header class="container-fluid nav-section">
             <div class="row all">
                 <div class="logo-div col-3">
-                    <a href="./index.html"
-                        ><img src="./img/2-removebg-preview.png" alt=""
+                    <a href="{% url 'home' %}"
+                        ><img src="{% static 'images/2-removebg-preview.png'  %}" alt=""
                     /></a>
                 </div>
 
@@ -61,23 +62,26 @@
                             </div>
                         </li>
 
-                        <li class="item"><a href="./index.html">HOME</a></li>
-                        <li class="item"><a href="./about.html">ABOUT</a></li>
+                        <li class="item"><a href="{% url 'home' %}">HOME</a></li>
+                        <li class="item"><a href="{% url 'about' %}">ABOUT</a></li>
                         <li class="item">
-                            <a href="./roomindex.html">DISCUSION</a>
+                            <a href="{% url 'discussions' %}">DISCUSION</a>
                         </li>
-                        <li class="item"><a href="./couse.html">COURSE</a></li>
+                        <li class="item"><a href="{% url 'courses' %}">COURSE</a></li>
                         <li class="item"><a href="#">TEACHERS</a></li>
                         <li class="item"> 
+
+                             {% if request.user.is_authenticated %}
+
+
                             <div class="header-nav d-flex">
                                 <div class="header__user">
                                     <a href="profile.html">
                                         <div class="profile profile--small active">
-                                            <img
-                                            src="./profile-1524859358747-2fed3690d7a4.jfif"
-                                            />
-                                        </div>
-                                        <p>user name <br /><span>@username</span></p>
+                                    <img src="{{prof.profile_pic.url}}"/>
+                                    </div>
+                                        
+                                        <p><span>@{{request.user}}</span></p>
                                     </a>
                                 </div>                                                           
                             <div class="dropdown bg-dark">
@@ -94,18 +98,20 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="./editprofile.html"
+                                                    href="{% url 'profile' prof.id %}"
                                                     >Edit Profile</a
                                                 >
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="./login.html"
+                                                <a class="dropdown-item" href="{% url 'logout' %}"
                                                     >Logout</a
                                                 >
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
+
+                                {% endif %}
                         </li>
                         <li class="toggle">
                             <a href="#"><span class="bars"></span></a>

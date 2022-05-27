@@ -1,7 +1,7 @@
 from unicodedata import name
 from django.shortcuts import render, redirect
 from .models import Questions, Room ,Topic, Answers
-from .forms import RoomForm ,QuestionForm ,AnswerForm
+from .forms import RoomForm ,QuestionForm ,AnswerForm, QuestionRoomForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
@@ -47,6 +47,7 @@ def discussions(request):
 
 def rooms(request):
     """ A method that shows list of rooms """
+    prof = request.user.profile
     rooms = Room.objects.all()
     context = {'rooms': rooms}
     return render(request, 'discussions/rooms.html', context)
@@ -55,10 +56,12 @@ def rooms(request):
 def room(request, pk):
     """ A method that shows a specific room"""
    # question = Questions.objects.all()
+
     room = Room.objects.get(id=pk)
+    prof = request.user.profile
     questions = room.questions_set.all()
     answers = room.answers_set.all()
-    question_form = QuestionForm()
+    question_form = QuestionRoomForm()
     answer_form = AnswerForm()
     context = {'room': room, 'questions': questions, 'answers': answers, 'question_form': question_form, 'answer_form': answer_form}
     return render(request, 'discussions/room.html', context)
@@ -67,6 +70,7 @@ def room(request, pk):
 @login_required(login_url='login')
 def createRoom(request):
     """ A method for creating new room """
+    prof = request.user.profile
     profile = request.user.profile
     topics = Topic.objects.all()
     form = RoomForm()
@@ -86,7 +90,7 @@ def createRoom(request):
                 description = request.POST.get("description")
             )
             return redirect('rooms')
-    context = {'form': form, 'topics': topics, 'room':room}
+    context = {'prof':prof,'form': form, 'topics': topics, 'room':room}
     return render(request, 'discussions/room_form.html', context)
 
 
@@ -96,6 +100,7 @@ def createRoom(request):
 def createQuestion(request):
     """ A method for creating question """
     form = QuestionForm()
+    prof = request.user.profile
 
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -109,7 +114,7 @@ def createQuestion(request):
 
             return redirect('discussions')
         
-    context = {'form': form, 'rooms': rooms}
+    context = {'prof':prof,'form': form, 'rooms': rooms}
     return render(request, 'discussions/questions_form.html', context)
 
     
@@ -119,17 +124,19 @@ def createQuestion(request):
 @login_required(login_url='login')
 def createroomQuestion(request, pk):
     """ A method for creating question """
-    querier = request.user.profile
+    qform = QuestionRoomForm()
+    prof = request.user.profile
     room = Room.objects.get(id=pk)
+    querier = request.user.profile
     body = request.POST.get("body")
     topic = room.topic
 
     if request.method == 'POST':
-        Question.objects.create(
-            querier = querier,
+        Questions.objects.create(
+            user = querier,
             room = room,
             body = body,
-           # topic = topic
+           topic = topic
         )
         return redirect('room', pk=room.id)
 
@@ -140,6 +147,7 @@ def createroomQuestion(request, pk):
 def updateRoom(request, pk):
     """ A method for updating a room """
     profile = request.user.profile
+    prof = request.user.profile
     room = Room.objects.get(id=pk)
     topics = Topic.objects.all()
     form = RoomForm(instance=room)
@@ -173,6 +181,9 @@ def updateRoom(request, pk):
 def updateQuestion(request, pk):
     """ A method for updating specific question """
     question = Questions.objects.get(id=pk)
+    room = question.room
+    prof = request.user.profile
+    room_id = room.id
     form = QuestionForm(instance=question)
 
     if request.method == 'POST':
@@ -180,7 +191,7 @@ def updateQuestion(request, pk):
 
         if form.is_valid():
             form.save()
-            return redirect('discussion')
+            return redirect('room', pk=room_id)
     context = {'form': form}
     return render(request, 'discussions/question_form.html', context)
 
@@ -192,7 +203,8 @@ def createAnswer(request, pk):
     question = Questions.objects.get(id=pk)
     body = request.POST.get("body")
     room = question.room
-    topic = room.topic
+    room_id = room.id
+    # topic = room.topic
 
     if request.method == 'POST':
         Answers.objects.create(
@@ -200,9 +212,9 @@ def createAnswer(request, pk):
             question = question,
             room = room,
             body = body,
-            #topic = topic
+            # topic = topic
         )
-        return redirect('discussions')
+        return redirect('room', pk=room_id)
 
 
 
@@ -210,6 +222,8 @@ def createAnswer(request, pk):
 def updateAnswer(request, pk):
     """ a method for updating specific question """
     answer = Answers.objects.get(id=pk)
+    room = answer.room
+    room_id = room.id
     form = AnswerForm(instance=answer)
 
     if request.method == 'POST':
@@ -217,7 +231,7 @@ def updateAnswer(request, pk):
 
         if form.is_valid():
             form.save()
-            return redirect('discussion')
+            return redirect('room', pk=room_id)
     context = {'form': form}
     return render(request, 'discussions/answer_form.html', context)
 
@@ -243,12 +257,14 @@ def deleteRoom(request, pk):
 def deleteQuestion(request, pk):
     """ A method for deleting a question """
     question = Questions.objects.get(id=pk)
+    room = question.room
+    room_id = room.id
     # question = Question.objects.get(id=pk)
     # answer = Answer.objects.get(id=pk)
 
     if request.method == 'POST':
         question.delete()
-        return redirect('discussion')
+        return redirect('room', pk=room_id)
     return render(request, 'discussions/delete.html', {'obj': question})
 
 

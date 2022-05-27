@@ -70,9 +70,13 @@
                         <li class="item"><a href="{% url 'courses' %}">COURSE</a></li>
                         <li class="item"><a href="#">TEACHERS</a></li>
                         <li class="item"> 
+
+                             {% if request.user.is_authenticated %}
+
+
                             <div class="header-nav d-flex">
                                 <div class="header__user">
-                                    <a href="profile.html">
+                                    <a href="{% url 'profile' prof.id %}">
                                         <div class="profile profile--small active">
                                     <img src="{{prof.profile_pic.url}}"/>
                                     </div>
@@ -106,6 +110,8 @@
                                         </ul>
                                     </div>
                                 </div>
+
+                                {% endif %}
                         </li>
                         <li class="toggle">
                             <a href="#"><span class="bars"></span></a>

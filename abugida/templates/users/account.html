@@ -70,15 +70,18 @@
                         <li class="item"><a href="{% url 'courses' %}">COURSE</a></li>
                         <li class="item"><a href="#">TEACHERS</a></li>
                         <li class="item"> 
+
+                             {% if request.user.is_authenticated %}
+
+
                             <div class="header-nav d-flex">
                                 <div class="header__user">
                                     <a href="profile.html">
                                         <div class="profile profile--small active">
-                                            <img
-                                                src="./profile-1524859358747-2fed3690d7a4.jfif"
-                                            />
-                                        </div>
-                                        <p>{{request.username}} <br /><span>@{{profile.username}}</span></p>
+                                    <img src="{{prof.profile_pic.url}}"/>
+                                    </div>
+                                        
+                                        <p><span>@{{request.user}}</span></p>
                                     </a>
                                 </div>                                                           
                             <div class="dropdown bg-dark">
@@ -95,18 +98,20 @@
                                             <li>
                                                 <a
                                                     class="dropdown-item"
-                                                    href="{}"
+                                                    href="{% url 'profile' prof.id %}"
                                                     >Edit Profile</a
                                                 >
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="./login.html"
+                                                <a class="dropdown-item" href="{% url 'logout' %}"
                                                     >Logout</a
                                                 >
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
+
+                                {% endif %}
                         </li>
                         <li class="toggle">
                             <a href="#"><span class="bars"></span></a>
